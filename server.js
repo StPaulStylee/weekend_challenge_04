@@ -2,12 +2,13 @@ var express =  require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var taskRouter = require('./routes/tasks')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 //Router assignment
-//app.use('/task', taskRouter);
+app.use('/tasks', taskRouter);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, './public/views/index.html'));
