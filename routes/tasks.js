@@ -86,6 +86,34 @@ router.delete('/:id', function (req, res) {
   });//End of pool.connect
 });//End of delete request
 
+router.put('/:id', function (req, res) {
+//When did these params become available? LIke... how is the router accessing this?
+  var id = req.params.id;
+  console.log(id);
+  pool.connect(function (err, client, done) {
+    try {
+      if (err) {
+        console.log('Error connecting to the DB', err);
+        res.sendStatus(500);
+        return;
+      }
+
+      client.query('UPDATE tasks SET complete = NOT complete WHERE=$1', [id],
+        function (err) {
+          if (err) {
+            console.log('Error querying the DB', err);
+            res.sendStatus(500);
+            return;
+          }
+          
+          res.sendStatus(204);
+        });
+    }
+    finally {
+      done();
+    }
+  });//End of pool.connect
+});//End of delete request
 
 
 module.exports = router;

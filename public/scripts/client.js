@@ -2,7 +2,7 @@ $(function () {
   getTasks();
   $('#addTask').on('submit', addTask);
   $('#tasks').on('click', '.delete', deleteTask);
-  $('#tasks').on('submit', 'button', updateComplete);
+  $('#tasks').on('click', '.complete', updateComplete);
 }); // End of document Ready
 
 function getTasks() {
@@ -21,7 +21,7 @@ function displayTasks(response) {
   response.forEach(function (task) {
     var $div = $('<ul class ="task"></ul>');
     var $completeLi = $('<li></li>');
-    var $completeButton = $('<button type="submit" class="complete" name="complete" value="true"></button>');
+    var $completeButton = $('<input type="checkbox" class="complete" name="complete" value="true" />');
     $completeButton.data('id', task.id);
     $completeLi.append($completeButton);
     $div.append($completeLi);
@@ -68,4 +68,10 @@ function deleteTask(event) {
 function updateComplete(event) {
   event.preventDefault();
   console.log('Clicked!');
+  var $taskID = $(this).data('id');
+  $.ajax({
+    type: 'PUT',
+    url: '/tasks/' + $taskID,
+    success: getTasks,
+  });
 }
