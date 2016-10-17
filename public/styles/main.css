@@ -110,12 +110,15 @@ h1 {
 }
 
 .task {
-  margin: 1em 0;
+	padding: 1em 0;
 }
-
  .task li {
 	 display: inline;
-	 padding: 1em 0.75em 1em 0;
+	 padding: 1em 0.5em;
+}
+
+.complete {
+	cursor: pointer;
 }
 
 .taskComplete {
@@ -138,3 +141,15 @@ h1 {
  /*----------------------------------------------------------------------------
                                Footer
  -----------------------------------------------------------------------------*/
+ footer {
+	 background-color: #3e3e3c;
+	 bottom: 0;
+	 color: #fff;
+	 height: 2em;
+	 left: 0;
+	 opacity: 0.80;
+	 padding-top: 0.5em;
+	 position: fixed;
+	 text-align: center;
+	 width: 100%;
+ }
