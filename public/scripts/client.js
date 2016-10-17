@@ -14,24 +14,24 @@ function getTasks() {
   });
 }
 
-function displayTasks(response) {
+function displayTasks(task) {
   $('#newTask').val('');
   var $taskList = $('#tasks');
 
-  response.forEach(function (task) {
-    var $div = $('<ul class ="task"></ul>');
+  task.forEach(function (task) {
+    var $ul = $('<ul class ="task"></ul>');
     var $completeLi = $('<li></li>');
     var $completeButton = $('<input type="checkbox" class="complete" name="complete" value="true" />');
     $completeButton.data('id', task.id);
     $completeLi.append($completeButton);
-    $div.append($completeLi);
-    $div.append('<li>' + task.to_do + '</li>');
+    $ul.append($completeLi);
+    $ul.append('<li>' + task.to_do + '</li>');
     var $deleteLi = $('<li></li>');
     var $deleteButton = $('<button type="button" class="delete"></button>');
     $deleteButton.data('id', task.id);
     $deleteLi.append($deleteButton);
-    $div.append($deleteLi);
-    $('#tasks').append($div);
+    $ul.append($deleteLi);
+    $('#tasks').append($ul);
   });
 }
 
@@ -69,6 +69,8 @@ function updateComplete(event) {
   $.ajax({
     type: 'PUT',
     url: '/tasks/' + $taskID,
-    success: getTasks,
+    success: function() {
+      $('#tasks').find('ul').find('li').toggleClass('taskComplete');//Use toggle class?
+    }
   });
 }

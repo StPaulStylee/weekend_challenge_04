@@ -85,6 +85,7 @@ h1 {
                               Form
 -----------------------------------------------------------------------------*/
 #newTask {
+	background-color: #fff;
 	border-bottom: 2px solid darkgrey;
 }
 
@@ -114,7 +115,12 @@ h1 {
 
  .task li {
 	 display: inline;
-	 padding-right: 0.75em;
+	 padding: 1em 0.75em 1em 0;
+}
+
+.taskComplete {
+	background-color: #d4d1c2;
+	text-decoration: line-through;
 }
 
 .delete {
