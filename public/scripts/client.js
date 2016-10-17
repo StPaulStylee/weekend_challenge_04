@@ -2,9 +2,9 @@ $(function () {
   getTasks();
   $('#addTask').on('submit', addTask);
   $('#tasks').on('click', '.delete', deleteTask);
-  $('#tasks').on('click', '.complete', updateComplete);
+  $('#tasks').on('click', 'li', updateComplete);
 }); // End of document Ready
-
+var counter = 0;
 function getTasks() {
   $('#tasks').empty();
   $.ajax({
@@ -22,7 +22,7 @@ function displayTasks(task) {
     var $ul = $('<ul class ="task"></ul>');
     var $completeLi = $('<li></li>');
     var $completeButton = $('<input type="checkbox" class="complete" name="complete" value="true" />');
-    $completeButton.data('id', task.id);
+    $completeLi.data('id', task.id);
     $completeLi.append($completeButton);
     $ul.append($completeLi);
     $ul.append('<li>' + task.to_do + '</li>');
@@ -65,12 +65,14 @@ function deleteTask(event) {
 
 function updateComplete(event) {
   event.preventDefault();
+  console.log($(this));
+  $(this).next().toggleClass('taskComplete');
   var $taskID = $(this).data('id');
   $.ajax({
     type: 'PUT',
     url: '/tasks/' + $taskID,
-    success: function() {
-      $('#tasks').find('ul').find('li').toggleClass('taskComplete');//Use toggle class?
+    success: function () {
+      console.log('Got it!')
     }
   });
 }

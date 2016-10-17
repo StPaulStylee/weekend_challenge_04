@@ -12,5 +12,3 @@ need to be completed and subsequently remove them when the task is complete.
 database. That needs to be fixed.
 - If user refreshes page after completing a task, the styling the indicates
 the completion goes back to default.
-- The $toggleClass function used to apply completing styling is set up in such
-a way that it applies to every single list-item in the section.
