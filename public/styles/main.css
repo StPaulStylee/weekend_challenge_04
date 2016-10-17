@@ -60,12 +60,45 @@ body {
 }
 
 main {
+	font-family: 'Lato', sans-serif;
   font-size: 1.6em;
 }
 
+button, input {
+	font-family: 'Roboto', sans-serif;
+}
+
+input {
+	border: none;
+}
+
+input:focus {
+	outline: none;
+}
+
 h1 {
+	font-family: 'Gloria Hallelujah', cursive;
   font-size: 2.2em;
 }
+
+/*----------------------------------------------------------------------------
+                              Form
+-----------------------------------------------------------------------------*/
+#newTask {
+	border-bottom: 2px solid darkgrey;
+}
+
+#newTaskBtn {
+	background: linear-gradient(315deg, #0da20a, #58ed51);
+	background: -webkit-linear-gradient(315deg, #0da20a, #0da20a 50%, #58ed51);
+	border: none;
+	border-radius: 50%;
+	cursor: pointer;
+	height: 2em;
+	padding-left: 0.75em;
+	width:2em;
+}
+
 
 /*----------------------------------------------------------------------------
                               Tasks to be Completed
@@ -75,18 +108,24 @@ h1 {
   margin: 1em 0;
 }
 
-/*----------------------------------------------------------------------------
-                              Tasks to be Completed
------------------------------------------------------------------------------*/
 .task {
   margin: 1em 0;
 }
 
  .task li {
 	 display: inline;
+	 padding-right: 0.75em;
 }
 
-
+.delete {
+	background: linear-gradient(315deg, #f73030, #f73030 50%, #f7806a);
+	background: -webkit-linear-gradient(315deg, #f73030, #f73030 50%, #f7806a);
+	cursor: pointer;
+	border: none;
+	border-radius: 50%;
+	height: 2em;
+	width:2em;
+}
 
 
 

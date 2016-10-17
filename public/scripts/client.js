@@ -2,9 +2,11 @@ $(function () {
   getTasks();
   $('#addTask').on('submit', addTask);
   $('#tasks').on('click', '.delete', deleteTask);
+  $('#tasks').on('submit', 'button', updateComplete);
 }); // End of document Ready
 
 function getTasks() {
+  $('#tasks').empty();
   $.ajax({
     type: 'GET',
     url: '/tasks',
@@ -13,18 +15,19 @@ function getTasks() {
 }
 
 function displayTasks(response) {
-  console.log('working.... Yes!');
+  $('#newTask').val('');
   var $taskList = $('#tasks');
 
-  //If needed, add a counter variable here so you can create unique id's for each task
   response.forEach(function (task) {
     var $div = $('<ul class ="task"></ul>');
-
-    //$div.append('<p>' + task.complete + '</p>');
-    $div.append('<li><input type="checkbox" name="complete" value="true" /></li>');
+    var $completeLi = $('<li></li>');
+    var $completeButton = $('<button type="submit" class="complete" name="complete" value="true"></button>');
+    $completeButton.data('id', task.id);
+    $completeLi.append($completeButton);
+    $div.append($completeLi);
     $div.append('<li>' + task.to_do + '</li>');
     var $deleteLi = $('<li></li>');
-    var $deleteButton = $('<button type="button" class="delete">Delete</button>');
+    var $deleteButton = $('<button type="button" class="delete"></button>');
     $deleteButton.data('id', task.id);
     $deleteLi.append($deleteButton);
     $div.append($deleteLi);
@@ -58,6 +61,11 @@ function deleteTask(event) {
   $.ajax({
     type: 'DELETE',
     url: '/tasks/' + $taskID,
-    success: displayTasks,// This is incorrect. Not displaying correctly.
+    success: getTasks,
   });
+}
+
+function updateComplete(event) {
+  event.preventDefault();
+  console.log('Clicked!');
 }
