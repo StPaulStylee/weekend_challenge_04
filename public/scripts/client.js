@@ -45,8 +45,6 @@ function addTask(event) {
     taskData[element.name] =  element.value;
   });
 
-  console.log(taskData);
-
   $.ajax({
     type: 'POST',
     url: '/tasks',
@@ -67,7 +65,6 @@ function deleteTask(event) {
 
 function updateComplete(event) {
   event.preventDefault();
-  console.log('Clicked!');
   var $taskID = $(this).data('id');
   $.ajax({
     type: 'PUT',

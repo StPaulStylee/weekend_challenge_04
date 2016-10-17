@@ -58,7 +58,6 @@ router.post('/', function (req, res) {
 });//End of post request
 
 router.delete('/:id', function (req, res) {
-//When did these params become available? LIke... how is the router accessing this?
   var id = req.params.id;
   console.log(id);
   pool.connect(function (err, client, done) {

@@ -7,7 +7,6 @@ var taskRouter = require('./routes/tasks')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-//Router assignment
 app.use('/tasks', taskRouter);
 
 app.get('/', function (req, res) {
