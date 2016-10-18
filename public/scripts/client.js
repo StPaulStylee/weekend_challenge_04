@@ -1,8 +1,13 @@
 $(function () {
   getTasks();
   $('#addTask').on('submit', addTask);
-  $('#tasks').on('click', '.delete', deleteTask);
   $('#tasks').on('click', 'li', updateComplete);
+  $('#tasks').on('click', '.delete', function(){
+    $('.deleteModal').addClass('is-visible');
+    $('.modal-overlay').addClass('is-visible');
+  });
+  $('.deleteConfirm').on('click', deleteTask);
+
 }); // End of document Ready
 function getTasks(task) {
   $('#tasks').empty();
@@ -60,6 +65,8 @@ function addTask(event) {
 
 function deleteTask(event) {
   event.preventDefault();
+  $('.deleteModal').removeClass('is-visible');
+  $('.modal-overlay').removeClass('is-visible');
   var $taskID = $(this).data('id');
   $.ajax({
     type: 'DELETE',
