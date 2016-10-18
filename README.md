@@ -7,5 +7,5 @@ need to be completed and subsequently remove them when the task is complete.
 ###Things to Finish
 - Move completed tasks to the bottom of the page.
 ###Bugs that Need Fixing
-- If user refreshes page after completing a task, the styling that indicates
-the completion goes back to default.
+- There is a weird 500 error when an item is deleted. What is bizarre is that
+it is a error on a PUT request. The delete still functions.
